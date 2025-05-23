@@ -90,7 +90,7 @@ session_start();
 <body class="store-body">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm fade-in-section">
     <div class="container">
-        <a class="navbar-brand fw-bold fs-4 logo-animate" href="index.php">Online Store</a>
+        <a class="navbar-brand fw-bold fs-4 logo-animate" href="index.php">The Limited Edition Store</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 23, 2025 at 04:08 PM
+-- Generation Time: May 23, 2025 at 10:57 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -43,8 +43,7 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `customer_id`, `guest_name`, `guest_phone`, `guest_address`, `total`, `created_at`, `updated_at`) VALUES
-(4, 7, NULL, NULL, NULL, 20.00, '2025-05-23 13:33:02', '2025-05-23 13:33:02'),
-(5, 7, NULL, NULL, NULL, 50.00, '2025-05-23 13:33:53', '2025-05-23 13:33:53');
+(6, NULL, NULL, NULL, NULL, 99999.00, '2025-05-23 20:23:53', '2025-05-23 20:23:53');
 
 -- --------------------------------------------------------
 
@@ -60,6 +59,13 @@ CREATE TABLE `order_details` (
   `price` decimal(10,2) NOT NULL,
   `subtotal` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `order_details`
+--
+
+INSERT INTO `order_details` (`id`, `order_id`, `product_id`, `quantity`, `price`, `subtotal`) VALUES
+(6, 6, 16, 1, 99999.00, 99999.00);
 
 -- --------------------------------------------------------
 
@@ -78,6 +84,17 @@ CREATE TABLE `products` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `products`
+--
+
+INSERT INTO `products` (`id`, `name`, `description`, `price`, `slug`, `image_path`, `category_id`, `created_at`, `updated_at`) VALUES
+(16, 'gucci', 'limited edition', 99999.00, 'gucci', 'uploads/6830d4938a7ce_gucci.jpg', 8, '2025-05-23 20:03:31', '2025-05-23 14:03:31'),
+(17, 'teddy bear', 'limited edition', 100.00, 'teddy-bear', 'uploads/6830da7b9d293_teddy bear.jpg', 6, '2025-05-23 20:28:43', '2025-05-23 14:28:43'),
+(18, 'solo leveling', 'limited edition', 5000.00, 'solo-leveling', 'uploads/6830dce2d4704_solo leveling.jpg', 9, '2025-05-23 20:38:58', '2025-05-23 14:38:58'),
+(19, 'ps5', 'limited edition', 100000.00, 'ps5', 'uploads/6830dd1605639_ps5.png', 7, '2025-05-23 20:39:50', '2025-05-23 14:39:50'),
+(21, 'stove', 'limited edition', 40000.00, 'stove', 'uploads/6830defe44c81_stove.jpg', 10, '2025-05-23 20:47:58', '2025-05-23 14:47:58');
 
 -- --------------------------------------------------------
 
@@ -120,7 +137,7 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`id`, `name`) VALUES
-(1, 'admin'),
+(1, 'Manager'),
 (2, 'customer');
 
 -- --------------------------------------------------------
@@ -147,8 +164,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `role_id`, `name`, `email`, `password`, `address`, `phone`, `birthdate`, `created_at`, `updated_at`) VALUES
-(6, 2, 'daniel', 'andreestrera20@gmail.com', '$2y$10$gtVNfn.i02IrJNGww.LkZuHl4BnZtrz243tbU16FZ8fhjYIz8jSz6', 'sanfernando', '01236547895', '2025-05-01', '2025-05-23 12:58:03', '2025-05-23 13:05:30'),
-(7, 2, 'andre', 'andreestrera12@gmail.com', '$2y$10$fZ./sTeWV4ghM.1nJigEXep25OR5dRHJUL6Y2psM77qjwcW/53sv6', 'naga', '01236547895', '2025-05-15', '2025-05-23 13:06:20', '2025-05-23 13:10:11');
+(6, 1, 'daniel', 'andreestrera20@gmail.com', '$2y$10$gtVNfn.i02IrJNGww.LkZuHl4BnZtrz243tbU16FZ8fhjYIz8jSz6', 'sanfernando', '01236547895', '2025-05-01', '2025-05-23 12:58:03', '2025-05-23 14:57:44'),
+(20, 1, 'dandan', 'dandan@yahoo.com', '$2y$10$3aE7lyaxAQ72rCXE.f9mIO8AtY6L.9xBZUKpT8ocHCyuRScQiQsCi', NULL, NULL, NULL, '2025-05-23 20:21:30', '2025-05-23 20:21:30'),
+(21, 2, 'daniel', 'dandandan@yahoo.com', '$2y$10$1zI29UFSg0R2VBKiQKCjqu7Ttde5yUMT8SNojS9OLHpZyj5fgYejy', NULL, NULL, NULL, '2025-05-23 20:21:53', '2025-05-23 20:21:53');
 
 --
 -- Indexes for dumped tables
@@ -204,19 +222,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `product_categories`
@@ -234,7 +252,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- Constraints for dumped tables

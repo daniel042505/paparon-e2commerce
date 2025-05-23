@@ -3,7 +3,7 @@
 namespace Aries\MiniFrameworkStore\Models;
 
 use Aries\MiniFrameworkStore\Includes\Database;
-
+use PDO; // Add this line to ensure PDO is available if not globally scoped
 
 class User extends Database {
     private $db;
@@ -19,13 +19,17 @@ class User extends Database {
         $stmt->execute([
             'email' => $data['email'],
         ]);
-        return $stmt->fetch(\PDO::FETCH_ASSOC);
+        return $stmt->fetch(PDO::FETCH_ASSOC); // Use PDO::FETCH_ASSOC for clarity
     }
 
     public function register($data) {
-        $sql = "INSERT INTO users (role_id, name, email, password, created_at, updated_at) VALUES (2, :name, :email, :password, :created_at, :updated_at)";
+        // Corrected SQL: Use a placeholder for role_id and bind it
+        $sql = "INSERT INTO users (role_id, name, email, password, created_at, updated_at) VALUES (:role_id, :name, :email, :password, :created_at, :updated_at)";
         $stmt = $this->db->prepare($sql);
+
+        // Bind the role_id from the $data array
         $stmt->execute([
+            'role_id' => $data['account_type'], // <-- CRITICAL FIX: Get role_id from $data
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => password_hash($data['password'], PASSWORD_BCRYPT),

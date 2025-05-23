@@ -16,10 +16,12 @@ $registration_message = ''; // Initialize a variable for registration messages
 if(isset($_POST['submit'])) {
     try {
         // Attempt to register the user
+        // This array now correctly includes 'account_type' from the form
         $registered = $user->register([
             'name' => $_POST['full-name'],
             'email' => $_POST['email'],
-            'password' => $_POST['password'], // Password should be hashed inside the User model's register method
+            'password' => $_POST['password'],
+            'account_type' => $_POST['account_type'], // This line correctly passes the value to the User model
             'created_at' => Carbon::now('Asia/Manila'),
             'updated_at' => Carbon::now('Asia/Manila')
         ]);
@@ -70,6 +72,14 @@ if(isset($_SESSION['user']) && !empty($_SESSION['user'])) {
                         <label for="email" class="form-label text-muted">Email Address</label>
                         <input name="email" type="email" class="form-control form-control-lg border-primary rounded-pill" id="email" aria-describedby="emailHelp" required>
                         <div id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="account-type" class="form-label text-muted">Account Type</label>
+                        <select name="account_type" class="form-control form-control-lg border-primary rounded-pill" id="account-type" required>
+                            <option value="1">Manager</option>
+                            <option value="2">User</option>
+                        </select>
+                        <div id="accountTypeHelp" class="form-text text-muted">Select your account role.</div>
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label text-muted">Password</label>

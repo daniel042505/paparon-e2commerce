@@ -32,7 +32,7 @@
             const formData = new FormData();
             formData.append('productId', productId);
             formData.append('quantity', quantity);
-            fetch('/cortes-framework-store/cart-process.php', {
+           fetch('/paparon-e2commerce/cart-process.php', {
                 method: 'POST',
                 body: formData,
                 headers: {
